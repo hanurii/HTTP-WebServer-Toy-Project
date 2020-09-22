@@ -28,12 +28,16 @@ public class RequestHandler extends Thread {
             BufferedReader bf = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String line = bf.readLine();;
 
+            String[] tokens = line.split(" ");
+            int urlIndex = 1;
+            String url = tokens[urlIndex];
+
             while (!"".equals(line)) {
                 if (line == null) {
                     System.out.println("line이 null이예요!");
                     return;
                 }
-                log.info("##### {}", line);
+                log.debug("##### {}", line);
                 line = bf.readLine();
             }
         } catch (IOException e) {
